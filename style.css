@@ -1,0 +1,43 @@
+*::selection {
+  background-color: #586f69;
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: grey;
+}
+
+.hero-section {
+  background-color: #f1f5f4;
+}
+
+.btn {
+  background-color: #586f69;
+  color: #fff;
+  border-radius: 0;
+  transition: 0.5s;
+}
+
+.btn:hover {
+  color: #fff;
+  background-color: #7a9d91;
+}
+
+.plant-image {
+  height: 100dvh;
+}
+
+.inner-image-caption {
+  position: relative;
+  top: -75px;
+  width: 95%;
+}
+
+.bg-light-custom {
+  background-color: #f1f5f4;
+}
+
+input[type="email"]:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
