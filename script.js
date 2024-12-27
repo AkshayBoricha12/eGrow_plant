@@ -1,5 +1,7 @@
 let popularPlants = document.querySelector(".popular-plants");
 let features = document.querySelector(".features");
+let header = document.querySelector(".header");
+let mainSection = document.querySelector(".main-section");
 
 let popularPlant = [
   {
@@ -93,4 +95,114 @@ for (const feature of featuresObj) {
                   </div>
                 </div>`;
   features.appendChild(div);
+}
+
+let jsonData = {
+  header: {
+    logo: "assets/logo-regular.png",
+    menuItems: [
+      {
+        label: "Shop All",
+        action: "/shop",
+        position: "left",
+        type: "text",
+      },
+      {
+        label: "Plants",
+        action: "/product-category/plants",
+        position: "left",
+        type: "text",
+      },
+      {
+        label: "Cacti",
+        action: "/product-category/cacti",
+        position: "left",
+        type: "text",
+      },
+      {
+        label: "Our Story",
+        action: "/home",
+        position: "right",
+        type: "text",
+      },
+      {
+        label: "Contact",
+        action: "/contact",
+        position: "right",
+        type: "text",
+      },
+      {
+        label: "Shopping Cart",
+        action: "/shopping-cart",
+        position: "right",
+        type: "icon",
+        iconURL: "fa-bag-shopping fs-4",
+        color: "#586f69",
+      },
+      {
+        label: "Account",
+        action: "/my-account",
+        position: "right",
+        type: "icon",
+        iconURL: "fa-circle-user fs-2",
+        color: "#000",
+      },
+    ],
+  },
+  mainSection: {
+    title: "Bird of Paradise Plant",
+    subtitle: "Plants",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mattis nulla in mauris efficitur elementum.",
+    price: "$65.00",
+    discountedPrice: "$50.00",
+    actionButton: "Add to cart",
+    heroImage: "assets/hero.png",
+  },
+};
+
+function createHeaderElement(item) {
+  let element;
+  if (item.type == "text") {
+    element = document.createElement("a");
+    element.href = `#${item.action.slice(1)}`;
+    element.className = "nav-link";
+    element.text = item.label;
+  } else {
+    element = document.createElement("i");
+    element.classList = `fa-solid ${item.iconURL}`;
+    element.style.color = item.color;
+  }
+
+  if (item.position !== "right") {
+    header.firstElementChild.appendChild(element);
+  } else {
+    header.lastElementChild.appendChild(element);
+  }
+}
+
+function renderData() {
+  let logoImage = document.createElement("img");
+  logoImage.classList = "navbar-brand img-fluid ";
+  logoImage.src = jsonData.header.logo;
+  logoImage.alt = "Logo";
+  header.firstElementChild.appendChild(logoImage);
+
+  for (const navItem of jsonData.header.menuItems) {
+    createHeaderElement(navItem);
+  }
+
+  fillHeroSectionContent(jsonData.mainSection);
+}
+
+renderData();
+
+function fillHeroSectionContent(mainSectionData) {
+  let data = Object.entries(mainSectionData);
+  data.pop();
+  for (const [key, value] of data) {
+    document.getElementById(key).textContent = value;
+  }
+
+  document.getElementById("heroImage").src = mainSectionData.heroImage;
 }
